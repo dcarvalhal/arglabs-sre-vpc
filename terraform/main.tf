@@ -38,5 +38,6 @@ data "terraform_remote_state" "global_vpc" {
 
 
 # AWS:
-provider "aws" { region = data.terraform_remote_state._42.outputs.region }
+provider "aws"    { region = data.terraform_remote_state._42.outputs.region }
+output   "region" { value  = data.terraform_remote_state._42.outputs.region }
 
