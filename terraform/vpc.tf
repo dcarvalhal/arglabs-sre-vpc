@@ -14,7 +14,7 @@ output "vpc_cidr_block" { value = aws_vpc.vpc.cidr_block }
 # DHCP options set:
 resource "aws_vpc_dhcp_options" "vpc_dhcp_options" {
   domain_name_servers = [ "AmazonProvidedDNS" ]
-  domain_name = "${terraform.workspace}.arglabs"
+  domain_name         = "arglabs"
 }
 resource "aws_vpc_dhcp_options_association" "vpc_dhcp_options_association" {
   vpc_id          = aws_vpc.vpc.id
