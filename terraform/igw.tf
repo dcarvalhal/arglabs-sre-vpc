@@ -26,7 +26,6 @@ output "igw_rt_id" { value = aws_route_table.igw_rt.*.id }
 
 ## Route table to IGW and TGW (used by VPN)
 resource "aws_route_table" "igw_tgw_rt" {
-  count = terraform.workspace == "global" ? 1 : 0
   vpc_id = aws_vpc.vpc.id
   route {
     cidr_block = "0.0.0.0/0"
