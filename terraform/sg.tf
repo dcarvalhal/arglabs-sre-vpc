@@ -25,7 +25,7 @@ output "sg_allow_all_id" { value = aws_security_group.sg_allow_all.id }
 # Allow OUTBOUND 
 resource "aws_security_group" "sg_allow_out" {
   name        = "${terraform.workspace}-vpc-allow-out"
-  description = "Allow ALL traffic"
+  description = "Allow ALL outbound traffic"
   vpc_id      = aws_vpc.vpc.id
   egress {
     from_port   = 0
@@ -43,7 +43,7 @@ output "sg_allow_out_id" { value = aws_security_group.sg_allow_out.id }
 # Allow INBOUND - do not use!
 resource "aws_security_group" "sg_allow_in" {
   name        = "${terraform.workspace}-vpc-allow-in"
-  description = "Allow ALL traffic"
+  description = "Allow ALL inbound traffic"
   vpc_id      = aws_vpc.vpc.id
   ingress {
     from_port   = 0
