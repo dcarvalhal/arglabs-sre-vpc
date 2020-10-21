@@ -16,7 +16,7 @@ output "vpn_subnet_id" { value = aws_subnet.vpn.*.id }
 resource "aws_route_table_association" "vpn_rta" {
   count = terraform.workspace == "global" ? data.terraform_remote_state._42.outputs.azcount : 0
   subnet_id      = element(aws_subnet.vpn.*.id, count.index)
-  route_table_id = aws_route_table.igw_tgw_rt.id
+  route_table_id = join("", aws_route_table.igw_tgw_rt.*.id)
 }
 
 
