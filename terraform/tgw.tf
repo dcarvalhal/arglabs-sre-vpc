@@ -29,7 +29,9 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "global_vpc_tgw_attach" {
     environment    = terraform.workspace
   },)
 }
-output "tgw_attach_id_global"       { value = aws_ec2_transit_gateway_vpc_attachment.global_vpc_tgw_attach.*.id }
+output "tgw_attach_id_global" { 
+  value = aws_ec2_transit_gateway_vpc_attachment.global_vpc_tgw_attach.*.id 
+}
 
 ## Other envs vpc attachment
 resource "aws_ec2_transit_gateway_vpc_attachment" "vpc_tgw_attach_env" {
