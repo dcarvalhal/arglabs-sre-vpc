@@ -21,15 +21,14 @@ function f_terraform() {
 
 
 function f_usage() {
-  echo "$0 <apply|destroy|plan> <global|staging|production>"
+  echo "$0 <apply|destroy|plan> <workspace>"
   exit 1
 }
 
 
-case $WORKSPACE in
-  global|staging|production) true ;;
-  *) f_usage ;;
-esac
+if [ "$WORKSPACE" == "" ]; then
+  f_usage
+fi
 
 case $1 in
   apply|destroy)        f_terraform $1 $WORKSPACE;;
