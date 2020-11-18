@@ -1,9 +1,12 @@
-# arglabs-sre-env-vpc
-VPC code for global, staging and production environments.
+# arglabs-sre-vpc
 
+VPC post: [](https://arglabs.com.br/)
 
-# Terraform:
-workspaces:
-- global
-- staging
-- production
+# What is in this repository ?
+The base VPC infrastructure (subnets, route tables, internet gateway, nat gateways etc) for each environment.
+
+# How to use it 
+```
+./run apply <workspace>
+```
+
