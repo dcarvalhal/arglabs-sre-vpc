@@ -7,7 +7,7 @@ terraform {
   backend "s3" {
     bucket    = "arglabs-terraform-states"
     region    = "sa-east-1"
-    key       = "sre/env_vpc.state"
+    key       = "infra/sre/vpc.state"
   }
 }
 
@@ -18,7 +18,7 @@ data "terraform_remote_state" "_42" {
   config = {
     bucket = "arglabs-terraform-states"
     region = "sa-east-1"
-    key    = "deep_tought.state"
+    key    = "infra/sre/deep_thought.state"
   }
 }
 
@@ -30,7 +30,7 @@ data "terraform_remote_state" "global_vpc" {
   config = {
     bucket = "arglabs-terraform-states"
     region = "sa-east-1"
-    key    = "sre/env_vpc.state"
+    key    = "infra/sre/vpc.state"
   }
 }
 
