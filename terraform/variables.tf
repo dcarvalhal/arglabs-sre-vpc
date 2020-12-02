@@ -8,3 +8,6 @@ variable "tags" {
     repository     = "git@github.com:ARGLabs/arglabs-sre-vpc.git" 
   }
 }
+variable "bucket" { }
+variable "bucket_region" { }
+

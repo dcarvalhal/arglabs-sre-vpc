@@ -5,8 +5,8 @@ terraform {
     aws = { version = ">= 3.10.0" }
   }
   backend "s3" {
-    bucket    = "arglabs-terraform-states"
-    region    = "sa-east-1"
+#    bucket    = ""
+#    region    = ""
     key       = "infra/sre/vpc.state"
   }
 }
@@ -16,8 +16,8 @@ data "terraform_remote_state" "_42" {
   backend   = "s3"
   workspace = terraform.workspace
   config = {
-    bucket = "arglabs-terraform-states"
-    region = "sa-east-1"
+    bucket = var.bucket
+    region = var.bucket_region
     key    = "infra/sre/deep_thought.state"
   }
 }
@@ -28,8 +28,8 @@ data "terraform_remote_state" "global_vpc" {
   backend   = "s3"
   workspace = "global"
   config = {
-    bucket = "arglabs-terraform-states"
-    region = "sa-east-1"
+    bucket = var.bucket
+    region = var.bucket_region
     key    = "infra/sre/vpc.state"
   }
 }
