@@ -16,8 +16,7 @@ It should not be used for service or application specific resources.
 DO NOT create any databases, load balancers, instances etc here.
 
 ### Highlights
-If done right, you can add another environment (workspaces) *only here*, and just use it on the other projects without changing any code.
-You can change regions, DNS domains etc this way.
+If done right, you don't need to change any code in this repo to add another environment or change CIDRs. Just configure it on deep-thought and use it everywhere else.
 
 # How to use it
 
