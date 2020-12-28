@@ -11,7 +11,7 @@ terraform {
   }
 }
 
-# Global definitions:
+# Deep thought definitions:
 data "terraform_remote_state" "_42" {
   backend   = "s3"
   workspace = terraform.workspace
@@ -23,7 +23,7 @@ data "terraform_remote_state" "_42" {
 }
 
 
-# Global definitions:
+# Global VPC definitions:
 data "terraform_remote_state" "global_vpc" {
   backend   = "s3"
   workspace = "global"
@@ -34,7 +34,16 @@ data "terraform_remote_state" "global_vpc" {
   }
 }
 
-
+# TGW definitions:
+data "terraform_remote_state" "tgw" {
+  backend   = "s3"
+  workspace = "default"
+  config = {
+    bucket = var.bucket
+    region = var.bucket_region
+    key    = "infra/sre/tgw.state"
+  }
+}
 
 
 # AWS:

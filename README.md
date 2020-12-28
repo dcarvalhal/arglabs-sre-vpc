@@ -2,7 +2,7 @@
 
 This is part of the [ARGLabs project](https://www.arglabs.com.br).
 
-See more about this on [Github repository](https://github.com/ARGLabs/arglabs-sre-vpc) and this [blog post](https://arglabs.com.br/2020/11/18/the-vpc-infrastructure/).
+See more about this on [Github repository](https://github.com/ARGLabs/arglabs-sre-vpc) and this [blog post](https://arglabs.com.br/2020/11/19/the-vpc-infrastructure/).
 
 ### Why ?
 
@@ -44,8 +44,8 @@ data "terraform_remote_state" "vpc" {
   backend   = "s3"
   workspace = terraform.workspace
   config = {
-#    bucket = ""
-#    region = ""
+    bucket = var.bucket
+    region = var.bucket_region
     key    = "infra/sre/vpc.state"
   }
 }
