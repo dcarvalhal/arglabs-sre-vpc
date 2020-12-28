@@ -44,18 +44,17 @@ resource "aws_route" "default_route" {
 }
 
 
-# global vpc to tgw:
-resource "aws_route" "arglabs_cidr_route_global" {
-  count = terraform.workspace == "global" ? data.terraform_remote_state._42.outputs.azcount : 0
-  #count = data.terraform_remote_state._42.outputs.azcount
+# iroute to to tgw:
+resource "aws_route" "arglabs_cidr_route_tgw" {
+  count = data.terraform_remote_state._42.outputs.azcount 
   route_table_id = element(aws_route_table.ngw_rt.*.id, count.index)
   destination_cidr_block = data.terraform_remote_state._42.outputs.arglabs_cidr
-  transit_gateway_id = join("", aws_ec2_transit_gateway.tgw.*.id)
+  transit_gateway_id = data.terraform_remote_state.tgw.outputs[data.terraform_remote_state._42.outputs.region] 
 }
 
-resource "aws_route" "arglabs_cidr_route_other" {
-  count = terraform.workspace != "global" ? data.terraform_remote_state._42.outputs.azcount : 0
-  route_table_id = element(aws_route_table.ngw_rt.*.id, count.index)
-  destination_cidr_block = data.terraform_remote_state._42.outputs.arglabs_cidr
-  transit_gateway_id = data.terraform_remote_state.global_vpc.outputs.tgw_id
-}
+#resource "aws_route" "arglabs_cidr_route_other" {
+#  count = terraform.workspace != "global" ? data.terraform_remote_state._42.outputs.azcount : 0
+#  route_table_id = element(aws_route_table.ngw_rt.*.id, count.index)
+#  destination_cidr_block = data.terraform_remote_state._42.outputs.arglabs_cidr
+#  transit_gateway_id = data.terraform_remote_state.global_vpc.outputs.tgw_id
+#}

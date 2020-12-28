@@ -43,14 +43,14 @@ resource "aws_route" "igw_default_route" {
   gateway_id = aws_internet_gateway.igw.id
 }
 
-resource "aws_route" "igw_tgw_route" {
-  count = terraform.workspace == "global" ? 1 : 0
-  route_table_id = join("", aws_route_table.igw_tgw_rt.*.id)
-  destination_cidr_block = data.terraform_remote_state._42.outputs.arglabs_cidr
-  transit_gateway_id = join("", aws_ec2_transit_gateway.tgw.*.id)
-  depends_on = [
-    aws_ec2_transit_gateway.tgw,
-    aws_route_table.igw_tgw_rt,
-  ]
-}
+#resource "aws_route" "igw_tgw_route" {
+#  count = terraform.workspace == "global" ? 1 : 0
+#  route_table_id = join("", aws_route_table.igw_tgw_rt.*.id)
+#  destination_cidr_block = data.terraform_remote_state._42.outputs.arglabs_cidr
+#  transit_gateway_id = join("", aws_ec2_transit_gateway.tgw.*.id)
+#  depends_on = [
+#    aws_ec2_transit_gateway.tgw,
+#    aws_route_table.igw_tgw_rt,
+#  ]
+#}
 
